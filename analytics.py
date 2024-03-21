@@ -2,24 +2,32 @@ import pandas as pd
 import xlrd
 import plotly.express as px
 
-df = pd.read_excel("MAPGEO2015.xls")
-print(df.head())
+    
+def StartAnalysis(xls_file):
+    df = pd.read_excel(xls_file)
 
-# Criar gráfico de dispersão com Plotly
-fig = px.bar(df, y='Alt.Geom. (h)', color='Região', hover_data=[
-    'RN',
-    'Estado',
-    'Latitude',
-    'Longitude',
-    'Alt.Orto. (H)',
-    'Alt.Geom. (h)',
-    'SAT'
-    ])
+    # Cria um gráfico
+    fig = px.bar(df, y='Alt.Geom. (h)', color='Região', hover_data=[
+        'RN',
+        'Estado',
+        'Latitude',
+        'Longitude',
+        'Alt.Orto. (H)',
+        'Alt.Geom. (h)',
+        'SAT'
+        ])
 
-# Adicionar título e rótulos dos eixos
-fig.update_layout(title='Gráfico de altura geométrica por região',
-                  xaxis_title='',
-                  yaxis_title='Altura Geométrica (h)')
+    # Adiciona titulo e labels para o gráfico
+    fig.update_layout(title='Gráfico de altura geométrica por região',
+                    xaxis_title='',
+                    yaxis_title='Altura Geométrica (h)')
 
-# Mostrar o gráfico
-fig.show()
+    # Mostra o gráfico
+    fig.show()
+
+
+def main():
+    xls_file = "MAPGEO2015.xls"
+    StartAnalysis(xls_file)
+
+main()    
